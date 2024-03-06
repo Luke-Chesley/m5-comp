@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from feature_creation import feature_creation_every_row
+from utils import reduce_mem_usage
 
 # TODO: Add prices and dates
 
@@ -21,6 +22,7 @@ def level_id(level:int,test=False)->pd.DataFrame:
             col: col.replace("d_", "") if "d_" in col else col for col in df.columns
         }
     )
+
 
     start_date = "2016-05-23" if test else "2011-01-29"
  
@@ -44,6 +46,8 @@ def level_id(level:int,test=False)->pd.DataFrame:
     df.columns = [
         date_mapping[col] if col in date_mapping else col for col in df.columns
 ]
+
+
 
     if level == 1:
         t_df = df.drop(
@@ -144,5 +148,9 @@ def level_id_dates(level:int,fc_dates:bool=False,test=False)->pd.DataFrame:
         df = feature_creation_every_row(df)
 
     df['time_idx'] = df.date.factorize()[0]
+
+    df, end_mem = reduce_mem_usage(df)
+
+    print(f'df memory usage: {round(end_mem,2)} Mb')
 
     return df, identifiers

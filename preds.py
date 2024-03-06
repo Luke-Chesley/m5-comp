@@ -10,6 +10,8 @@ from pytorch_forecasting import TemporalFusionTransformer, TimeSeriesDataSet
 
 def rmsse_scores(model_path):
 
+    config_folder = model_path[-6]
+
     config = get_config()
 
     _, _, ds_train, _ = build_time_series_ds(config)

@@ -9,7 +9,7 @@ def train_model(config):
         tft,
         train_dataloader,
         val_dataloader,
-        #ckpt_path="m5/checkpoints/1/epoch=2-val_loss=371.75-3.ckpt",
+        ckpt_path="m5/checkpoints/6/epoch=1-val_loss=527.08-6.ckpt",
     )
 
 

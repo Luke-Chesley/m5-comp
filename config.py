@@ -9,11 +9,11 @@ from pytorch_forecasting.data import GroupNormalizer
 
 import torch.nn as nn
 
-LEVEL = 3
+LEVEL = 6
 
 
 checkpoint_callback = ModelCheckpoint(
-    dirpath="m5/checkpoints/2",
+    dirpath="m5/checkpoints/" + str(LEVEL),
     filename="{epoch}-{val_loss:.2f}" + "-" + str(LEVEL),
     save_top_k=1,
     verbose=False,
